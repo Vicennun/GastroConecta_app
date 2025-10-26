@@ -1,7 +1,10 @@
+
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    id("com.google.devtools.ksp")
 }
 
 android {
@@ -42,6 +45,18 @@ android {
 }
 
 dependencies {
+    implementation(libs.gson)
+    // --- NAVEGACIÓN ---
+    implementation(libs.androidx.navigation.compose)
+
+    // --- VIEWMODEL ---
+    implementation(libs.androidx.lifecycle.viewmodel.compose)
+    implementation(libs.androidx.compose.runtime.livedata) // Para observar LiveData como Estado
+
+    // --- ROOM ---
+    implementation(libs.androidx.room.runtime)
+    implementation(libs.androidx.room.ktx)
+    ksp(libs.androidx.room.compiler) // ¡Esta es la forma correcta!
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
